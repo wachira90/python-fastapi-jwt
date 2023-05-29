@@ -13,6 +13,9 @@ git clone https://github.com/wachira90/python-fastapi-jwt.git
 ## install package
 
 ```sh
+cd python-fastapi-jwt/
+virtualenv env
+env\Scripts\activate
 pip install -r req.txt
 OR
 pip install "fastapi[all]"
