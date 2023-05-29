@@ -1,10 +1,13 @@
 # python-fastapi-jwt
+
 python fastapi jsonwebtoken
+
+python 3.7.4
 
 ## clone 
 
 ```sh
-git clone 
+git clone https://github.com/wachira90/python-fastapi-jwt.git
 ```
 
 ## install package
