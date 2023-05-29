@@ -1,0 +1,42 @@
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNjg1MzgyMDY0fQ.IFWlLrGdioY5l3yfTgyV8vjGYo0UQvuKeDGuQeGg2Z0
+
+### SHOW DATA 
+
+GET http://127.0.0.1:8000/users/me
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+### LOGIN 1
+
+POST  http://127.0.0.1:8000/token
+Accept: : application/json
+Content-Type: application/x-www-form-urlencoded
+
+{
+    grant_type=&username=johndoe&password=secret&scope=&client_id=&client_secret=
+}
+
+### LOGIN 2
+
+POST  http://127.0.0.1:8000/token
+Accept: : application/json
+Content-Type: application/x-www-form-urlencoded
+
+{
+    "grant_type" : "",
+    "username" : "johndoe",
+    "password" : "secret",
+    "scope" : "",
+    "client_id" : "",
+    "client_secret" : ""
+}
+
+
+###
+
+GET http://127.0.0.1:8000/getdata/
+Content-Type: application/json
+X-Token: user1
+X-Token: pass2
