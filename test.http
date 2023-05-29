@@ -11,8 +11,14 @@ Content-Type: application/x-www-form-urlencoded
     grant_type=&username=johndoe&password=secret&scope=&client_id=&client_secret=
 }
 
-### SHOW DATA 
+### SHOW DATA 1
 
 GET http://127.0.0.1:8000/users/me
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### SHOW DATA 2
+
+GET http://127.0.0.1:8000/users/me/items/
 Content-Type: application/json
 Authorization: Bearer {{token}}
