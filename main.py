@@ -1,13 +1,14 @@
 #!python
 from datetime import datetime, timedelta
 from typing import Union
-
+import uvicorn
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from typing_extensions import Annotated
+from fastapi.middleware.cors import CORSMiddleware
 
 '''
 pip install "python-jose[cryptography]"
@@ -58,6 +59,19 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:8000",
+    "http://localhost:3000",
+    "https://example.com"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
@@ -138,6 +152,9 @@ async def login_for_access_token(
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
+@app.get("/")
+async def root():
+    return {"message": "main page"}
 
 @app.get("/users/me/", response_model=User)
 async def read_users_me(
